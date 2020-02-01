@@ -1,67 +1,181 @@
 package com.mdgiitr.karthik.rythm_android;
 
 
+import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MatchWordsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
+import static com.mdgiitr.karthik.rythm_android.MainActivity.user;
+
 public class MatchWordsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    ImageView bedImage, ballImage, tenImage, dogImage, cancel;
+    TextView bedText, ballText, tenText, dogText;
+    int matchWordScore = 0;
+    Button exitButton;
 
     public MatchWordsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MatchWordsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MatchWordsFragment newInstance(String param1, String param2) {
-        MatchWordsFragment fragment = new MatchWordsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match_words, container, false);
+        View view = inflater.inflate(R.layout.fragment_match_words, container, false);
+
+        matchWordScore = 0;
+
+        bedImage = view.findViewById(R.id.bedImage);
+        ballImage = view.findViewById(R.id.ballImage);
+        tenImage = view.findViewById(R.id.tenImage);
+        dogImage = view.findViewById(R.id.dogImage);
+
+        bedImage.setOnTouchListener(new MyTouchListener());
+        ballImage.setOnTouchListener(new MyTouchListener());
+        tenImage.setOnTouchListener(new MyTouchListener());
+        dogImage.setOnTouchListener(new MyTouchListener());
+
+        bedText = view.findViewById(R.id.bedString);
+        ballText = view.findViewById(R.id.ballString);
+        tenText = view.findViewById(R.id.tenString);
+        dogText = view.findViewById(R.id.dogString);
+
+        exitButton = view.findViewById(R.id.exitButton);
+
+        cancel = view.findViewById(R.id.cancel);
+
+        bedText.setOnDragListener(new MyDragListener());
+        ballText.setOnDragListener(new MyDragListener());
+        tenText.setOnDragListener(new MyDragListener());
+        dogText.setOnDragListener(new MyDragListener());
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadScore();
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_matchWordsFragment2_to_homeFragment2);
+            }
+        });
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadScore();
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_matchWordsFragment2_to_homeFragment2);
+            }
+        });
+
+        return view;
     }
 
+    public void uploadScore(){
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCanceledOnTouchOutside(false);
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = mDatabase.getReference();
+        Long timeStamp = System.currentTimeMillis();
+        String tsString = timeStamp.toString();
+        progressDialog.show();
+        databaseReference.child(user.getUid())
+                .child("match_words")
+                .child(tsString)
+                .setValue(matchWordScore)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            if (progressDialog.isShowing())
+                            {
+                                progressDialog.dismiss();
+                            }
+                        }
+                        else {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Unable to upload score", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private final class MyTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                        view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    class MyDragListener implements View.OnDragListener {
+
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int action = event.getAction();
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    // do nothing
+                    break;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    break;
+                case DragEvent.ACTION_DROP:
+                    TextView textView = (TextView) v;
+                    ImageView imageView = (ImageView) event.getLocalState();
+
+                    if (((imageView == bedImage) && (textView == bedText)) ||  (imageView == dogImage) && (textView == dogText) ||
+                            (imageView == ballImage) && (textView == ballText)|| (imageView == tenImage) && (textView == tenText)) {
+                        matchWordScore++;
+                        imageView.setVisibility(View.INVISIBLE);
+                        textView.setVisibility(View.INVISIBLE);
+                        imageView.setOnTouchListener(null);
+                        textView.setOnDragListener(null);
+                        if (matchWordScore == 4){
+                            MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.tada);
+                            mp.start();
+                            uploadScore();
+                            exitButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    break;
+                case DragEvent.ACTION_DRAG_ENDED:
+
+                default:
+                    break;
+            }
+            return true;
+        }
+
+    }
 }
