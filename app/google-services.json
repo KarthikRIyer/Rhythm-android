@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1031513671128",
+    "firebase_url": "https://rythm-528ea.firebaseio.com",
+    "project_id": "rythm-528ea",
+    "storage_bucket": "rythm-528ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031513671128:android:ee10793cda123e1dbc5ead",
+        "android_client_info": {
+          "package_name": "com.mdgiitr.karthik.rythm_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031513671128-fuf18kp6a965ja15mcscup3hgmdt44ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgVRJtFxYM7J7jFeg5dr77kkuQ8kMMgKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031513671128-fuf18kp6a965ja15mcscup3hgmdt44ap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment2">
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.mdgiitr.karthik.rythm_android.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.mdgiitr.karthik.rythm_android.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_matchHalvesFragment"
+            app:destination="@id/matchHalvesFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_matchWordsFragment2"
+            app:destination="@id/matchWordsFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_findMeFragment2"
+            app:destination="@id/findMeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchHalvesFragment"
+        android:name="com.mdgiitr.karthik.rythm_android.MatchHalvesFragment"
+        android:label="fragment_match_halves"
+        tools:layout="@layout/fragment_match_halves" >
+        <action
+            android:id="@+id/action_matchHalvesFragment_to_matchHalvesFragment2"
+            app:destination="@id/matchHalvesFragment2"
+            app:popUpTo="@+id/matchHalvesFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_matchHalvesFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@+id/homeFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchWordsFragment2"
+        android:name="com.mdgiitr.karthik.rythm_android.MatchWordsFragment"
+        android:label="fragment_match_words"
+        tools:layout="@layout/fragment_match_words" />
+    <fragment
+        android:id="@+id/findMeFragment2"
+        android:name="com.mdgiitr.karthik.rythm_android.FindMeFragment"
+        android:label="fragment_find_me"
+        tools:layout="@layout/fragment_find_me" />
+    <fragment
+        android:id="@+id/matchHalvesFragment2"
+        android:name="com.mdgiitr.karthik.rythm_android.MatchHalvesFragment2"
+        android:label="fragment_match_halves_fragment2"
+        tools:layout="@layout/fragment_match_halves_fragment2" >
+        <action
+            android:id="@+id/action_matchHalvesFragment2_to_matchHalvesFragment3"
+            app:destination="@id/matchHalvesFragment3"
+            app:popUpTo="@+id/matchHalvesFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_matchHalvesFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@+id/homeFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchHalvesFragment3"
+        android:name="com.mdgiitr.karthik.rythm_android.MatchHalvesFragment3"
+        android:label="fragment_match_halves_fragment3"
+        tools:layout="@layout/fragment_match_halves_fragment3" >
+        <action
+            android:id="@+id/action_matchHalvesFragment3_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@+id/homeFragment2" />
+    </fragment>
+</navigation>

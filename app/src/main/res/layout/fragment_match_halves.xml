@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchHalvesFragment">
+
+    <Button
+        android:id="@+id/starNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/starCorrect"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="NEXT"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/starRightImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/matchHalvesL1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/star_right" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:id="@+id/matchHalvesL1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 1"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_cancel_black_24dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/starOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/starRightImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/starLeftImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@mipmap/star_left" />
+
+        <ImageView
+            android:id="@+id/starOption2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:src="@mipmap/apple_left" />
+
+        <ImageView
+            android:id="@+id/starOption3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:src="@mipmap/star_right" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/starCorrect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/starOption"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="CORRECT!"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+</RelativeLayout>
