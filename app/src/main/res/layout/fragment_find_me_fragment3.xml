@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lev1"
+    android:background="@drawable/lev3"
     android:orientation="vertical"
-    tools:context=".FindMeFragment">
+    tools:context=".FindMeFragment3">
 
     <Button
         android:id="@+id/next"
@@ -14,7 +14,7 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"
-        android:text="NEXT"
+        android:text="EXIT"
         android:visibility="invisible"
         android:textStyle="bold" />
 
@@ -28,6 +28,30 @@
         android:adjustViewBounds="true"
         android:maxWidth="80dp"
         android:src="@drawable/boy" />
+
+    <ImageView
+        android:id="@+id/football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="150dp"
+        android:layout_marginStart="10dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:src="@drawable/football" />
+
+    <ImageView
+        android:id="@+id/lion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="10dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:src="@drawable/lion" />
 
     <LinearLayout
         android:id="@+id/title"

@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lev1"
+    android:background="@drawable/lev2"
     android:orientation="vertical"
-    tools:context=".FindMeFragment">
+    tools:context=".FindMeFragment2">
 
     <Button
         android:id="@+id/next"
@@ -28,6 +28,18 @@
         android:adjustViewBounds="true"
         android:maxWidth="80dp"
         android:src="@drawable/boy" />
+
+    <ImageView
+        android:id="@+id/football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="200dp"
+        android:layout_marginStart="10dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:src="@drawable/football" />
 
     <LinearLayout
         android:id="@+id/title"

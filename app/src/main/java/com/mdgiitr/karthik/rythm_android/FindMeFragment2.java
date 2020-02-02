@@ -21,16 +21,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.mdgiitr.karthik.rythm_android.FindMeFragment.findLevelCleared;
 import static com.mdgiitr.karthik.rythm_android.MainActivity.user;
 
 
-public class FindMeFragment extends Fragment {
+public class FindMeFragment2 extends Fragment {
 
     Button next;
-    ImageView boy, cancel;
-    static int findLevelCleared = 0;
+    ImageView boy, cancel, football;
 
-    public FindMeFragment() {
+    public FindMeFragment2() {
         // Required empty public constructor
     }
 
@@ -44,18 +44,20 @@ public class FindMeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_find_me, container, false);
+        View view = inflater.inflate(R.layout.fragment_find_me_fragment2, container, false);
         boy = view.findViewById(R.id.boy);
         next = view.findViewById(R.id.next);
         cancel = view.findViewById(R.id.cancel);
-
-        MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.find);
-        mp.start();
+        football = view.findViewById(R.id.football);
+        MediaPlayer find = MediaPlayer.create(getContext(), R.raw.find);
+        find.start();
+        final MediaPlayer footballSound = MediaPlayer.create(getContext(), R.raw.football);
+        final MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.tada);
 
         boy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.tada);
+
                 mp.start();
                 findLevelCleared++;
                 boy.setOnClickListener(null);
@@ -67,14 +69,21 @@ public class FindMeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 uploadScore();
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_findMeFragment2_to_homeFragment2);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_findMeFragment22_to_homeFragment2);
             }
         });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_findMeFragment2_to_findMeFragment22);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_findMeFragment22_to_findMeFragment3);
+            }
+        });
+
+        football.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                footballSound.start();
             }
         });
 

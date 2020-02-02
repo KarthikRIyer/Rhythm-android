@@ -59,7 +59,18 @@
         android:id="@+id/findMeFragment2"
         android:name="com.mdgiitr.karthik.rythm_android.FindMeFragment"
         android:label="fragment_find_me"
-        tools:layout="@layout/fragment_find_me" />
+        tools:layout="@layout/fragment_find_me" >
+        <action
+            android:id="@+id/action_findMeFragment2_to_findMeFragment22"
+            app:destination="@id/findMeFragment22"
+            app:popUpTo="@+id/findMeFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_findMeFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@+id/homeFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/matchHalvesFragment2"
         android:name="com.mdgiitr.karthik.rythm_android.MatchHalvesFragment2"
@@ -85,5 +96,32 @@
             android:id="@+id/action_matchHalvesFragment3_to_homeFragment2"
             app:destination="@id/homeFragment2"
             app:popUpTo="@+id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/findMeFragment22"
+        android:name="com.mdgiitr.karthik.rythm_android.FindMeFragment2"
+        android:label="fragment_find_me_fragment2"
+        tools:layout="@layout/fragment_find_me_fragment2" >
+        <action
+            android:id="@+id/action_findMeFragment22_to_findMeFragment3"
+            app:destination="@id/findMeFragment3"
+            app:popUpTo="@+id/findMeFragment22"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_findMeFragment22_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@+id/findMeFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/findMeFragment3"
+        android:name="com.mdgiitr.karthik.rythm_android.FindMeFragment3"
+        android:label="fragment_find_me_fragment3"
+        tools:layout="@layout/fragment_find_me_fragment3" >
+        <action
+            android:id="@+id/action_findMeFragment3_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@+id/findMeFragment3"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
