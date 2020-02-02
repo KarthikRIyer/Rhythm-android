@@ -24,13 +24,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import static com.mdgiitr.karthik.rythm_android.MainActivity.mAuth;
 
-public class LoginFragment extends Fragment {
+public class RegisterFragment extends Fragment {
 
     EditText emailEditText;
     EditText passWordEditText;
-    Button loginButton, registerButton;
+    Button loginButton;
     ProgressDialog progressDialog;
-    public LoginFragment() {
+    public RegisterFragment() {
         // Required empty public constructor
     }
 
@@ -45,21 +45,13 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Logging in");
+        progressDialog.setMessage("Registering");
         progressDialog.setCanceledOnTouchOutside(false);
         emailEditText = view.findViewById(R.id.email_editText);
         passWordEditText = view.findViewById(R.id.password_editText);
         loginButton = view.findViewById(R.id.loginButton);
-        registerButton = view.findViewById(R.id.registerButton);
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_loginFragment2_to_registerFragment);
-            }
-        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +61,15 @@ public class LoginFragment extends Fragment {
 
                 if (!email.isEmpty() && !password.isEmpty()){
                     progressDialog.show();
-                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 NavOptions navOptions = new NavOptions.Builder()
                                         .setPopUpTo(R.id.loginFragment2, true)
                                         .build();
-                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_loginFragment2_to_homeFragment2, null,navOptions);
+                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_registerFragment_to_homeFragment2, null,navOptions);
                                 if (progressDialog.isShowing()){
                                     progressDialog.dismiss();
                                 }
@@ -87,7 +80,7 @@ public class LoginFragment extends Fragment {
                                 if (progressDialog.isShowing()){
                                     progressDialog.dismiss();
                                 }
-                                Toast.makeText(getActivity(), "Unable to login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Unable to register", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

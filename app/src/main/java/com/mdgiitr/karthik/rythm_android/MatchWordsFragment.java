@@ -77,7 +77,9 @@ public class MatchWordsFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadScore();
+                if (matchWordScore!=4){
+                    uploadScore();
+                }
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_matchWordsFragment2_to_homeFragment2);
             }
         });

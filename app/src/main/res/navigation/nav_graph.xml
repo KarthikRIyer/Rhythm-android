@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_loginFragment2_to_homeFragment2"
             app:destination="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_loginFragment2_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment2"
@@ -123,5 +126,14 @@
             app:destination="@id/homeFragment2"
             app:popUpTo="@+id/findMeFragment3"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.mdgiitr.karthik.rythm_android.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
 </navigation>
